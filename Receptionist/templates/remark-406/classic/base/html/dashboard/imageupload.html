@@ -1,0 +1,58 @@
+{% extends 'remark-403/classic/base/html/dashboard/change-password.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload.css'%}">
+<link rel="stylesheet" href="{% static 'global/vendor/dropify/dropify.css                      '%}">
+    
+
+
+<div class="page-header">
+        <h1 class="page-title">Upload Profile </h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Profile</a></li>
+          <li class="breadcrumb-item active">Change Password</li>
+        </ol>
+        <div class="page-header-actions">
+          <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+            <i class="icon wb-pencil" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+            <i class="icon wb-refresh" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+            <i class="icon wb-settings" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="col-xl-4 col-md-6">
+            <!-- Example Default -->
+            <div class="example-wrap">
+              <h4 class="example-title">Your fresh upload here</h4>
+              <div class="example">
+                <div class="dropify-wrapper"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p><p class="dropify-error">Ooops, something wrong appended.</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input type="file" id="input-file-now" data-plugin="dropify" data-default-file=""><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div>
+              </div>
+            </div>
+            <!-- End Example Default -->
+          </div>
+
+
+          <script src="{% static 'global/vendor/jquery-ui/jquery-ui.js                            '%}                     "></script>
+          <script src="{% static 'global/vendor/blueimp-tmpl/tmpl.js                              '%}                     "></script>
+          <script src="{% static 'global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js          '%}                 "></script>
+          <script src="{% static 'global/vendor/blueimp-load-image/load-image.all.min.js          '%}                 "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload.js          '%}                 "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload-process.js  '%}                         "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload-image.js    '%}                     "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload-audio.js    '%}                     "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload-video.js    '%}                     "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload-validate.js '%}                         "></script>
+          <script src="{% static 'global/vendor/blueimp-file-upload/jquery.fileupload-ui.js       '%}                     "></script>
+          <script src="{% static 'global/vendor/dropify/dropify.min.js                            '%}                             "></script>
+
+{% endblock content %}
+    

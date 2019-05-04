@@ -1,0 +1,103 @@
+{% extends 'remark-407/classic/base/html/dashboard/change-password.html' %}
+
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Prescribed Tests </h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Action</a></li>
+                  <li class="breadcrumb-item active">Prescribe Lab Test</li>
+
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">SIMPLIFY LIFE ADD TESTS</h3>
+  </div>
+  <div class="panel-body">
+   <table class="table">
+     <tr>
+       <thead class="thead-dark">
+         <th>
+           Patient Name
+         </th>
+         <th>
+           Test Name
+         </th>
+         <th>
+          Test Fees
+         </th>
+         <th>
+           Appointment Date
+         </th>
+         <th>
+           Doctor
+         </th>
+         <th>
+           Action
+         </th>
+       </thead>
+     </tr>
+     
+     {% for test in t %}
+       <tr>
+         <td>
+           {{test.ptest.patient_profile|title}}
+         </td>
+         <td>
+           {{test.test|title}}
+         </td>
+         <td>
+            {{test.test.fees|title}}
+
+         </td>
+         <td>
+           {{test.ptest.date}}
+         </td>
+         <td>
+           {{test.ptest.profile|title}}
+         </td>
+         <td>
+          <a href="#">Generate test report</a>
+         </td>
+       </tr>
+     {% endfor %}
+       
+       
+     
+   </table>
+
+</div>
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+
+
+{% endblock content %}
+    

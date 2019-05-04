@@ -1,0 +1,1 @@
+web: gunicorn Healthcare24_7.wsgi

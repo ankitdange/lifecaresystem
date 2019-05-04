@@ -1,0 +1,223 @@
+{% extends 'remark-403/classic/base/html/dashboard/change-password.html' %}
+
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#button").click(function(event){
+      event.preventDefault();
+      
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#').DataTable();
+  } );
+</script>
+<script src="{% static 'myjsfile/medicineprecribe.js'%}"></script>
+
+<style>
+#meal
+{
+
+  position: relative;
+  margin: 0%;
+  padding: 0%;
+  margin-top: -10px;
+  color: black;
+}
+.btn-primary
+{
+  padding-left: 50px;
+  padding-right:50px;
+  text-transform: uppercase;
+  margin-left: 20px;
+}
+.row input,.custom-select
+{
+  border: 1px solid black;
+  font-weight: bold;
+}
+.row #check
+{
+  width: 15px;
+  height: 15px;
+}
+</style>
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Prescribe Medicine</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Action</a></li>
+                  <li class="breadcrumb-item active">prescribe</li>
+                  <li class="breadcrumb-item active">medicine</li>
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">SIMPLIFY LIFE PRESCRIBE DRUGS</h3>
+  </div>
+  <div class="panel-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" method="POST">
+          
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <label for="">First Name</label>
+            <input type="text" id="fname" class="form-control"  required value="{{request.user.first_name}}">
+          </div>
+          <div class="form-group col-sm-3">
+              <label for="">Last Name</label>
+              <input type="text" id="lname" class="form-control"  required value="{{request.user.last_name}}">
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="">Email</label>
+                <input type="email" id="lname" class="form-control"  required value="{{request.user.email}}">
+              </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label for="">Gender</label>
+            <select id="" class="form-control">
+                <option value="">Select</option>
+                <option value="">Male</option>
+                <option value="">Female</option>
+                <option value="">Other</option>
+                
+              </select>
+
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group col-sm-3">
+              <label>Medicine*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+              <input type="text" name="fullName" id="med" class="form-control">
+          </div>
+       
+          
+              <div class="form-group col-sm-2">
+
+              <label>Quantity</label>
+              <input type="text" name="empCode" id="qty" class="form-control">
+              </div>
+          
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-3">
+              <label>Does</label><br>
+              <label for="">Morning</label>
+              <select id="morningdoes" class="form-control">
+                  <option value="">Select</option>
+                  <option value="Morning Before Meal">Before Meal</option>
+                  <option value="Morning After Meal">After Meal</option>
+                  <option value="Morning Fasting">Fasting</option>
+                  
+                </select>
+
+              
+                    <label>After Noon</label>
+                    <select id="afternoondoes" class="form-control">
+                        <option value="">Select</option>
+                        <option value="Afternoon Before Meal">Before Meal</option>
+                        <option value="Afternoon After Meal">After Meal</option>
+                        <option value="Afternoon Fasting">Fasting</option>
+                        
+                      </select>
+
+                      <label>Evening</label>
+                      <select id="eveningdoes" class="form-control">
+                          <option value="">Select</option>
+                          <option value="Evening Before Meal">Before Meal</option>
+                          <option value="Evening After Meal">After Meal</option>
+                          <option value="Evening Fasting">Fasting</option>
+                          
+                        </select>
+      
+          </div>
+          
+        </div>
+          
+          <div class="row">
+            <div class="form-group col-sm-4">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+          </div>
+        
+              
+          
+      </form>
+
+<div class="row">
+  <div class="col-lg-12">
+      <table class="list table" id="employeeList">
+          <thead class="thead-dark">
+              <tr>
+                  <th>Medicine Name</th>
+                  <th>Quantity</th>
+                  <th>Morning</th>
+                  <th>Afternoon</th>
+                  <th>Evening</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+      </table>
+
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+<script>
+var data=document.getElementsByTagName("TD").innerHTML;
+console.log(data);
+</script>
+                     
+{% endblock content %}
+    

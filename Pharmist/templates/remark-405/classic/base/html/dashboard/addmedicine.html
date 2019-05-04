@@ -1,0 +1,127 @@
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="showhtml">
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#buttonsdsdd").click(function(event){
+      event.preventDefault();
+      
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#').DataTable();
+  } );
+</script>
+<script src="{% static 'myjsfile/medicineprecribe.js'%}"></script>
+
+
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Add The Medicine</h1>
+                <ol class="breadcrumb">
+                  
+                  <li class="breadcrumb-item active">Add Medicine</li>
+                  
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">Add The Medicine To Database</h3>
+  </div>
+  <div class="panel-body">
+
+    
+  
+  
+      
+    
+      
+      {% if messages %}
+                          
+      {% for message in  messages %}
+      <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+           {{message}}
+        </div>
+     
+      {% endfor %}
+      {% endif %}
+  
+<form id="addmedicine">
+  {% csrf_token %}
+  <div class="form-group col-sm-8 col-md-8 col-lg-6">
+  {{form.Brand_Name|as_crispy_field}}
+</div>
+<div class="form-group col-sm-8 col-md-8 col-lg-6">
+    {{form.Unit|as_crispy_field}}
+  </div>
+  <div class="form-group col-sm-8 col-md-8 col-lg-6">
+      {{form.Active_ingredients|as_crispy_field}}
+  </div>
+  <div class="form-group col-sm-8 col-md-8 col-lg-6">
+      {{form.price|as_crispy_field}}
+  </div>
+  <div class="form-group col-sm-8 col-md-8 col-lg-6">
+      <input type="submit" class="btn btn-primary" value="Add Medicine">
+    </div>
+</form>
+    
+
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+</div>
+<script src="{% static 'jquery/dist/jquery.js'%}"></script>
+<script type="text/javascript">
+  $(document).on('submit','#addmedicine',function(e){
+    e.preventDefault();
+  $.ajax({
+        type:'POST',
+        url:'./dashboard/addmedicine',
+        data:
+        {
+            Brand_Name:$("#id_Brand_Name").val(),
+            Unit:$("#id_Unit").val(),
+            Active_ingredients:$("#id_Active_ingredients").val(),
+            price:$("#id_price").val(),
+            
+            
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(res)
+        {
+          $("#showhtml").html(res);
+        }
+    });
+});
+
+</script>
+                     
+{% endblock content %}
+    

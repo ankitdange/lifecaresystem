@@ -1,0 +1,213 @@
+
+
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#button").click(function(event){
+      event.preventDefault();
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+  } );
+</script>
+<script src="{% static 'myjsfile/medicine-pre.js'%}"></script>
+
+<style>
+#meal
+{
+
+  position: relative;
+  margin: 0%;
+  padding: 0%;
+  margin-top: -10px;
+  color: black;
+}
+.btn-primary
+{
+  padding-left: 50px;
+  padding-right:50px;
+  text-transform: uppercase;
+  margin-left: 20px;
+}
+.row input,.custom-select
+{
+  border: 1px solid black;
+  font-weight: bold;
+}
+.row #check
+{
+  width: 15px;
+  height: 15px;
+}
+</style>
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Prescribe Medicine</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Action</a></li>
+                  <li class="breadcrumb-item active">prescribe</li>
+                  <li class="breadcrumb-item active">medicine</li>
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">SIMPLIFY LIFE PRESCRIBE DRUGS</h3>
+  </div>
+  <div class="panel-body">
+<form action="" method="post">
+<div class="row">
+<div class="col-sm-3">
+  <div class="form-group">
+    <label for="">First Name</label>
+    <input type="text"
+      class="form-control" name="" id="fname" aria-describedby="helpId" placeholder="Enter First Name:"  required>
+  </div>
+</div>
+<div class="col-sm-3">
+  <div class="form-group">
+    <label for="">Last Name</label>
+    <input type="text"
+      class="form-control" name="" id="lname" aria-describedby="helpId" placeholder="Enter Last Name:" required>
+  </div>
+</div>
+<div class="col-sm-3">
+  <div class="form-group">
+    <label for="">Email</label>
+    <input type="email"
+      class="form-control" name="" id="email" aria-describedby="helpId" placeholder="Enter email:" required>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="">Date of birth</label>
+      <input type="date"
+        class="form-control" name="" id="dob"  placeholder="Enter Date:" required>
+    </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="">Gender</label><br>
+      <select class="custom-select" name="" id="gender">
+        <option selected>Select one</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">    
+          <label for="">Mobile</label>
+          <input type="text"
+          class="form-control" name="" id="mobile"  placeholder="Enter Mobile Number:" required>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">    
+          <label for="">Medicine</label>
+          <input type="text"
+          class="form-control" name="" id="medi"  placeholder="Enter Medicine Name:" required>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">    
+          <label for="">Quantity</label>
+          <input type="text"
+          class="form-control" name="" id="qty"  placeholder="Enter The Medicine Quantity" required>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">    
+   <label for="">Does</label><br>
+      <input type="checkbox"  id="mor" name="Morning" value="Morning">Morning
+      <select class="custom-select" name="" id="m">
+          <option selected>Select one</option>
+          <option value="After Meal">After Meal</option>
+          <option value="Before Meal">Before Meal</option>
+          <option value="Fasting">Fasting</option>
+        </select>
+      <input type="checkbox" id="aft"  name="Afternoon" value="Afternoon">Afternoon
+      <select class="custom-select" name="" id="a">
+          <option selected>Select one</option>
+          <option value="After Meal">After Meal</option>
+          <option value="Before Meal">Before Meal</option>
+          <option value="Fasting">Fasting</option>
+        </select>
+      <input type="checkbox" id="eve"  name="Evening" value="Evening">Evening
+      <select class="custom-select" name="" id="e">
+          <option selected>Select one</option>
+          <option value="After Meal">After Meal</option>
+          <option value="Before Meal">Before Meal</option>
+          <option value="Fasting">Fasting</option>
+        </select>
+        <button type="submit" class="btn btn-primary" id="button">Add</button>
+    </div>
+    
+    </div>
+
+  </div>
+</form>
+<div class="row">
+<div class="col-sm-12">
+    <table class="table"> 
+        <thead class="thead-dark">
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Medicine</th>
+            <th>Quantity</th>
+            <th>Does</th>
+            <th>Meal</th>
+
+          </tr>
+        </thead>
+        <table class="table" id="myTable"> 
+          
+        </table>
+      </table>
+</div>
+</div>
+</div>
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+                     
+{% endblock content %}
+    
+    

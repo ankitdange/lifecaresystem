@@ -1,0 +1,193 @@
+{% load staticfiles %}
+{% load avatar_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#button").click(function(event){
+      event.preventDefault();
+      
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#').DataTable();
+  } );
+</script>
+<script src="{% static 'myjsfile/medicineprecribe.js'%}"></script>
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
+<style>
+  input
+  {
+   border: none;
+   border: 1px solid black;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  }
+  .modal-backdrop
+   {
+    /* position: fixed; */
+     top: 0; 
+    /* right: 0; */
+    /* bottom: 0; */
+    /* left: 0; */
+    /* z-index: 1600; */
+    background-color: #000;
+}
+</style>
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Appointment</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Action</a></li>
+                  <li class="breadcrumb-item active">Appointment</li>
+                  
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">You're Appointment List </h3>
+  </div>
+  <div class="panel-body">
+    <div class="showhtml">
+    <div>
+    <table class="table table-hover" id="myTable">
+        <thead class="thead-dark">
+          <tr>
+            <th>Patient Profile</th>
+            <th>Patient Name</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Disease</th>
+            <th>Doctor Name</th>
+            <th>Date of appointment</th>
+            <th>Fees</th>
+            <th>Status</th>
+            <th>Action</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+          {% for aa in a  %}
+          
+          {% if aa.profile == request.user.profile %}
+            
+          
+            
+          <tr>
+              <td>
+                <div class="avatar avatar-100 mb-20" style="width:50px;">
+                    {% avatar aa.patient_profile.user%}
+                </div>
+               
+              </td>
+              <td>
+                  {{aa.patient_profile}}
+              </td>
+              <td>{{aa.patient_profile.gender}}</td>
+              <td>{{aa.patient_profile.mobile}}</td>
+              <td>{{aa.disease}}</td>
+              <td>{{aa.profile}}</td>
+              <td>{{aa.date}}
+              <td>{{aa.profile.fees}}</td>
+              <td>{{aa.status}}</td>
+              
+              
+              {% if aa.status == "Confirmed" %}
+              <td class="hide">    
+                  <a href="" id="Pmedi{{aa.id}}" > <img src="{% static 'images\download (1).png' %}" alt="" style="width:20px;"></a>
+                  <a href="" id="Pmedi{{aa.id}}" > <img src="{% static 'images\images.png' %}" alt="" style="width:20px;"></a>
+              </td>
+              {% else %}
+            <td class="hide">    
+              <a href="" id="status{{aa.id}}" > <span class="badge badge-pill badge-success">Accept</span></a>
+          </td>
+          {% endif %}
+          {% endif %}
+          
+        </tr>
+            <!-- Button to Open the Modal -->
+      <script type="text/javascript">
+              $(document).on('submit','#status',function(e){
+                e.preventDefault();
+              $.ajax({
+                    type:'POST',
+                    url:'./settings',
+                    data:
+                    {
+                    status:$("#id_status").val(),
+                      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success:function(res)
+                    {
+                      
+                    }
+                });
+            });
+            
+          </script>
+  
+<script>
+$(document).ready(function () {
+  $("#status{{aa.id}}").click(function (e) { 
+      e.preventDefault();
+      $("#mydata").load(url="./status/{{aa.id}}");
+      
+  });
+  $("#Pmedi{{aa.id}}").click(function (e) { 
+    e.preventDefault();
+    $("#mydata").load(url="./medicine/{{aa.id}}");
+    
+});
+});
+</script>
+
+
+
+          {% endfor %}
+            
+          
+          
+        </tbody>
+        
+      </table>
+      </div>
+
+
+      
+</div>
+  </div>
+</div>
+  </div>
+ </div>
+</div>
+
+
+
+{% endblock content %}
+    

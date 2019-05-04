@@ -1,0 +1,176 @@
+{% extends 'remark-403/classic/base/html/dashboard/change-password.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load avatar_tags %}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<style>
+   .card
+   {
+    background-image: linear-gradient(to right top, #19f4ed, #00dbff, #00b7ff, #9880ff, #eb12ba);
+   }
+   .card-body,.card-title
+   {
+     color: white;
+  
+   }
+   .image img
+   {
+     position: relative;
+    margin-left: 65px;
+    border-radius: 50%;
+    border-style: solid;
+   }
+ 
+</style>
+
+<div class="page-content container-fluid">
+
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Take Appointment</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Element</a></li>
+                  <li class="breadcrumb-item active">Appointment</li>
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+        
+
+
+            
+
+    
+  <div class="row">
+    <div class="col-lg-12">
+                <div class="panel">
+                <div class="panel-heading">
+                <h3 class="panel-title">SIMPLIFY LIFE PATIENT APPOINTMENT FORM</h3>
+                </div>
+              
+               
+                <div class="panel-body">
+                  <div class="row">
+                    {% for d in doc  %}
+
+                    
+                    <div class="col-sm-8 col-lg-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="image">
+                          {% avatar d.user%}
+                        </div>
+                          <h5 class="card-title" style="text-align:center; font-size:18px;">Dr.{{d.user.first_name|title}} {{d.user.last_name|title}}</h5>
+                          <p class="card-text">
+                            <center style="font-size:15px;">
+                             Department {{d.department}}<br>
+                             Degree {{d.degree}}<br>
+                             Experience {{d.Experience}} Years <br>
+                             Fees {{d.fees}}
+                            </center>
+                          </p>
+                          <center>
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{d.id}}"><i class="fas fa-address-card"></i> Book An Appointment </a>
+                        </center>
+                        </div>
+                    </div>
+                  </div>
+
+
+                      <!-- Button to Open the Modal -->
+
+<!-- The Modal -->
+
+<div class="modal" id="myModal{{d.id}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Take Appointment</h4>
+        <div id="msg">
+        {% if messages %}
+                          
+      {% for message in  messages %}
+      <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+           {{message}}
+        </div>
+     
+      {% endfor %}
+      {% endif %}
+    </div>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="" id="appointment">
+          {% csrf_token %}
+          {{f.as_p}}
+          <input type="submit" class="btn btn-primary">
+        </form>
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+                              
+                  
+                
+                {% endfor %}
+              </div>
+              
+<script type="text/javascript">
+  $(document).on('submit','#appointment',function(e){
+    e.preventDefault();
+  $.ajax({
+        type:'POST',
+        url:'./dashboard/appointment',
+        data:
+        {
+            profile:$("#id_profile").val(),
+            patient_profile:$("#id_patient_profile").val(),
+            disease:$("#id_disease").val(),
+            date:$("#id_date").val(),
+            
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function()
+        {
+          alert("Appointment Succesfully Paleced")
+        }
+    });
+});
+
+</script>
+ 
+                </div>
+                </div>
+                </div>
+                </div>
+                
+
+         
+{% endblock content %}
+    

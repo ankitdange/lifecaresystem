@@ -1,0 +1,111 @@
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="showhtml">
+
+
+
+
+
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Setting up you're profile</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Progile</a></li>
+                  <li class="breadcrumb-item active">setting</li>
+                  
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">Change the settings of the profile</h3>
+  </div>
+  <div class="panel-body">
+
+    
+  
+  
+      
+    
+      
+      {% if messages %}
+                          
+      {% for message in  messages %}
+      <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+           {{message}}
+        </div>
+     
+      {% endfor %}
+      {% endif %}
+  
+<form id="patienupdatetprofile">
+          
+        {% csrf_token %}
+        <div class="row">
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+         {{form.as_p}}
+         
+         <input type="submit">
+    </form>
+    
+    {% for dd in d  %}
+      {{dd}}
+    {% endfor %}
+      
+
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+</div>
+
+
+<script src="{% static 'jquery/dist/jquery.js'%}"></script>
+<script type="text/javascript">
+  $(document).on('submit','#patienupdatetprofile',function(e){
+    e.preventDefault();
+  $.ajax({
+        type:'POST',
+        url:'./dashboard/patient_profile',
+        data:
+        {
+            
+            user:$("#id_user").val(),
+            address:$("#id_address").val(),
+            gender:$("#id_gender").val(),
+            mobile:$("#id_mobile").val(),
+            
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(res)
+        {
+          $("#showhtml").html(res);
+        }
+    });
+});
+
+</script>
+                     
+{% endblock content %}
+    

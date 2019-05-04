@@ -1,0 +1,150 @@
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="showhtml">
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#buttonsdsdd").click(function(event){
+      event.preventDefault();
+      
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#').DataTable();
+  } );
+</script>
+
+<script src="{% static 'myjsfile/medicineprecribe.js'%}"></script>
+
+
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Prescribed Medicine</h1>
+                <ol class="breadcrumb">
+                  
+                  <li class="breadcrumb-item active">Prescribed Medicine</li>
+                  
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">Patient Prescribed Medicine</h3>
+  </div>
+  <div class="panel-body">
+
+<table class="table">
+<thead class="thead-dark">
+  <tr>
+    <th>
+      Patient Name
+    </th>
+    <th>
+      Prescribed Doctor
+    </th>
+    <th>
+      Appointment Date
+    </th>
+    <th>
+      Medicine
+    </th>
+    <th>
+      Unit
+    </th>
+    <th>
+      Sale
+    </th>
+  </tr>
+</thead>
+
+{% for pp in p  %}
+<tr>
+  <td>
+    {{pp.pmedicine.patient_profile|title}}
+  </td>
+  <td>
+   Dr. {{pp.pmedicine.profile.user.first_name|title}}  {{pp.pmedicine.profile.user.last_name|title}}
+  </td>
+  <td>
+    {{pp.pmedicine.date}}
+  </td>
+  <td>
+{{pp.pdrugs|title}}
+  </td>
+  <td>
+    {{pp.units}}
+  </td>
+  <td>
+    <a href="" id="sale">Sale</a>
+  </td>
+</tr>
+
+
+
+<script>
+    $(document).ready( function () {
+    $("#sale").click(function (e) { 
+      e.preventDefault();
+      $("#showhtml").load(url="./dashboard/sale/{{pp.id}}");
+    });
+  });
+  </script>
+{% endfor %}
+</table>
+
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+</div>
+<script src="{% static 'jquery/dist/jquery.js'%}"></script>
+<!-- <script type="text/javascript">
+  $(document).on('submit','#addmedicine',function(e){
+    e.preventDefault();
+  $.ajax({
+        type:'POST',
+        url:'./dashboard/addmedicine',
+        data:
+        {
+            Brand_Name:$("#id_Brand_Name").val(),
+            Unit:$("#id_Unit").val(),
+            Active_ingredients:$("#id_Active_ingredients").val(),
+            price:$("#id_price").val(),
+            
+            
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(res)
+        {
+          $("#showhtml").html(res);
+        }
+    });
+});
+
+</script> -->
+                     
+{% endblock content %}
+    

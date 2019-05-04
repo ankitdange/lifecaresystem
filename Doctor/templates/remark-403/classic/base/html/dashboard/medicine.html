@@ -1,0 +1,133 @@
+{% extends 'remark-403\classic\base\html\dashboard\setting.html' %}
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#button").click(function(event){
+      event.preventDefault();
+      
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#').DataTable();
+  } );
+</script>
+<script src="{% static 'myjsfile/medicineprecribe.js'%}"></script>
+
+
+<div class="page-content container-fluid">
+{{o.pmedicine.patient_appointment.profile}}
+
+
+        <div class="page-header">
+                <h1 class="page-title">Prescribe Medicine</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="">Action</a></li>
+                  <li class="breadcrumb-item active">prescribe</li>
+                  <li class="breadcrumb-item active">medicine</li>
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">SIMPLIFY LIFE PRESCRIBE DRUGS</h3>
+  </div>
+  <div class="panel-body">
+      <form class="form-horizontal" id="pmedicine">
+        {% csrf_token %}
+              <div class="form-group">
+                  <label class="control-label col-sm-2" for="email">Patient Name:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{a.patient_profile.user.first_name|title}} {{a.patient_profile.user.last_name|title}}" disabled style="color:black; width:50%; font-weight:normal;">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Disease:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" value="{{a.disease|title}}" disabled style="color:black; width:50%; font-weight:normal;">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="control-label col-sm-2" for="email">Appointment Date:</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" value="{{a.date|title}}" disabled style="color:black; width:50%; font-weight:normal;">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Doctor:</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" value="{{a.profile.user.first_name|title}} {{a.profile.user.last_name|title}} " disabled style="color:black; width:50%; font-weight:normal;">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        {{form.as_p}}
+                      </div>
+                      
+                            
+                      
+       
+            <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+      <script type="text/javascript">
+        $(document).on('submit','#pmedicine',function(e){
+          e.preventDefault();
+        $.ajax({
+              type:'POST',
+              url:'./medicine/{{a.id}}',
+              data:
+              {
+                  pmedicine:$("#id_pmedicine").val(),
+                  pdrugs:$("#id_pdrugs").val(),
+                  morning:$("#id_morning").val(),
+                  afternoon:$("#id_afternoon").val(),
+                  evening:$("#id_evening").val(),
+                  units:$("#id_units").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+              },
+              success:function(res)
+              {
+                alert("data save to data base!")
+                $('#id_pmedicine').val("");
+                $('#id_pdrugs').val("");
+                $('#id_morning').val("");
+                $('#id_afternoon').val("");
+                $('#id_evening').val("");
+                $('#id_units').val("");
+              
+              }
+          });
+      });
+      
+      </script>
+      
+      
+    </div>
+
+  </div>
+  </div>
+ </div>
+</div>
+                     
+{% endblock content %}
+    

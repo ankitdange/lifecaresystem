@@ -1,0 +1,116 @@
+{% extends 'remark-403/classic/base/html/dashboard/change-password.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<div class="page-header">
+        <h1 class="page-title">Settings</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Profile</a></li>
+          <li class="breadcrumb-item active">Setting</li>
+        </ol>
+        <div class="page-header-actions">
+          <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+            <i class="icon wb-pencil" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+            <i class="icon wb-refresh" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+            <i class="icon wb-settings" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <form class="form  col-sm-8">
+          <div class="row">
+
+            <div class="form-group col-md-6">
+              <label for="exampleInputEmail1">First Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password">
+              
+            </div>
+            <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password">
+                   
+                  </div>
+           
+            
+           
+        </div>
+        <div class="row">
+                <div class="form-group col-md-12">
+                        <label for="">Address</label>
+                              <textarea class="form-control" name="" id="" rows="3"></textarea>
+                            </div>
+        </div>
+        <div class="row">
+                <div class="form-group col-md-2">
+                        <label for="">Degree</label>
+                              <div class="form-group">
+                                  
+                                  <select class="custom-select" name="" id="">
+                                      <option selected>Select</option>
+                                      <option value="">MBBS</option>
+                                      <option value="">BUMS</option>
+                                      <option value="">ANY</option>
+                                  </select>
+                              </div>
+                            </div>
+                              <div class="form-group col-md-2">
+                            
+                                    <label for="">Speclity</label>
+                                          <div class="form-group">
+                                            
+                                              <select class="custom-select" name="" id="">
+                                                  <option selected>Select</option>
+                                                  <option value="">Cancer</option>
+                                                  <option value="">Eye</option>
+                                                  <option value="">Bones</option>
+                                              </select>
+                                          </div>
+                                        </div>    
+                                        
+                                        
+                                        <div class="form-group col-md-6">
+                            
+                                                <label for="">Email</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password">
+                                                    </div>    
+                                                    <div class="form-group col-md-2">
+                                                            <label for="">Experiance</label>
+                                                                  <div class="form-group">
+                                                                      
+                                                                      <select class="custom-select" name="" id="">
+                                                                          <option selected>Select</option>
+                                                                          <option value="">0 Years</option>
+                                                                          <option value="">1 Years</option>
+                                                                          <option value="">2 Years</option>
+                                                                          <option value="">3 Years</option>
+                                                                          <option value="">4 Years</option>
+                                                                          <option value="">5 Years</option>
+                                                                      </select>
+                                                                  </div>
+                                                                </div>
+        </div>
+        <div class="row">
+                <div class="form-group col-md-8">
+                        <label for="">Fees
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Fess">
+                            </div>
+           
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                    <button class="btn btn-success">Save Changes</button>
+
+            </div>
+        </div>
+          
+        </form>
+    
+{% endblock content %}
+    

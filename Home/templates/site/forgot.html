@@ -1,0 +1,26 @@
+{% extends 'site/register.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    
+
+
+<h5>Doctor Forget Password!</h5>
+<form action="" >
+  <div class="form-group" >
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="emailforgot">
+  </div>
+  
+      
+
+  <div class="form-group">
+  <a href="{% url 'login'%}">Login Here!</a>
+  </div>
+  
+  <button type="submit" class="btn btn-default" id="button">Forgot</button>
+</form>
+
+
+{% endblock content %}
+    

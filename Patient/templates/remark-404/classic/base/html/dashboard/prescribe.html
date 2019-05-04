@@ -1,0 +1,105 @@
+{% extends 'remark-403/classic/base/html/dashboard/change-password.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="page-content container-fluid">
+
+
+
+
+
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Add Medicine</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Action</a></li>
+                  <li class="breadcrumb-item active">Add medicine</li>
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+        
+
+
+
+
+
+    
+  <div class="row">
+    <div class="col-lg-12">
+                <div class="panel">
+                <div class="panel-heading">
+                <h3 class="panel-title">SIMPLIFY LIFE DRUGS MANAGEMENT</h3>
+                </div>
+                <div class="panel-body">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>
+                          Patient Name
+                        </th>
+                        <th>
+                          Medicine
+                        </th>
+                        <th>
+                          Morning
+                        </th>
+                        <th>
+                          After Noon
+                        </th>
+                        <th>
+                          Evening
+                        </th>
+                        <th>
+                          Appointment Date
+                        </th>
+                      </tr>
+                    </thead>
+                  
+                      
+                      
+                      {% for pp in p  %}
+                      <tr>
+                        <td>
+                          {{pp.pmedicine.patient_profile}}
+                        </td>
+                      <td>
+                        {{pp.pdrugs}}
+                      </td>
+                      <td>
+                        {{pp.morning}}
+                      </td>
+                      <td>
+                        {{pp.afternoon}}
+                      </td>
+                      <td>
+                        {{pp.evening}}
+                      </td>
+                      <td>
+                        {{pp.pmedicine.date}}
+                      </td>
+                    </tr>
+                        
+                      {% endfor %}
+                        
+                    
+                  </table>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+{% endblock content %}
+    

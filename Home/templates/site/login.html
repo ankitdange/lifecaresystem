@@ -1,0 +1,167 @@
+{% extends 'site/index.html' %}
+{% load staticfiles %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="{% static 'myjsfile/myjs.js'%}"></script>
+<style>
+.col-md-6
+{
+  text-align: left;
+  padding-left: 55px;
+}
+  .form-control
+  {
+    position: relative;
+    border: 0.5px solid rgb(15, 117, 165);
+    width: 450px;
+    text-align: left;
+ 
+  }
+  
+</style>
+
+
+<!-- Page Wrap ===========================================-->
+<div id="wrap"> 
+  
+  <!-- TOP BAR ===========================================-->
+  <div class="top-bar light">
+    <div class="container">
+      <ul class="pull-left">
+        <li><a href="index.html">Log in you're account !</a></li>
+      </ul>
+      
+      <!-- SOCIAL ICONS ===========================================-->
+      <ul class="social_icons">
+        <li class="facebook"><a href="#."><i class="fa fa-facebook"></i> </a></li>
+        <li class="twitter"><a href="#."><i class="fa fa-twitter"></i> </a></li>
+        <li class="dribbble"><a href="#."><i class="fa fa-dribbble"></i> </a></li>
+        <li class="instagram"><a href="#."><i class="fa fa-instagram"></i> </a></li>
+        <li class="googleplus"><a href="#."><i class="fa fa-google-plus"></i> </a></li>
+        <li class="pinterest"><a href="#."><i class="fa fa-pinterest"></i> </a></li>
+        <li class="linkedin"><a href="#."><i class="fa fa-linkedin"></i> </a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- HEADER ===========================================-->
+  
+  
+  <!--======= CONTENT =========-->
+  <div class="content fix-nav-space"> 
+    
+    <!--======= SUB BANNER =========-->
+    <section class="sub-banner" data-stellar-background-ratio="0.5">
+      <div class="overlay">
+        <div class="container">
+          <h3>Log in you're account</h3>
+          <p>All you're medical need is here</p>
+
+          <!--======= Breadcrumbs =========-->
+          <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">Departments</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    
+    <!--======= INTRO =========-->
+    <section class="intro">
+      
+          
+          <!--Text Section-->
+          <ul class="row">
+            <li class="col-md-6">
+              <div id="regload">
+                <h5>Doctor Login</h5>
+                  <form action="" >
+                      <div class="form-group" >
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="emaild">
+                      </div>
+                      <div class="form-group">
+                        <label for="password">password</label>
+                        <input type="password" class="form-control" id="passwordd">
+                      </div>
+                      <div class="form-group">
+                      <a href="" id="reghere">Register Here!</a>
+                      </div>
+                      <div class="form-group">
+                        <a href="#" id="dforget">Forgot Password</a>
+                        </div>
+                      <button type="submit" class="btn btn-default" id="button">Register</button>
+                    </form>
+                    
+
+
+              </div>
+              
+            </li>
+            
+            <li class="col-md-6">
+              <div id="pload">
+                <h5>Patient Login</h5>
+              <form action="" >
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="emailp">
+                </div>
+                <div class="form-group">
+                  <label for="password">password</label>
+                  <input type="password" class="form-control" id="passwordp">
+                </div>
+                <div class="form-group">
+                <a href="#" id="preg">Register With Us.</a>
+                </div>
+                <div class="form-group">
+                  <a href="#" id="pforget">Forgot Password</a>
+                  </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+              
+              </div>
+                
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!--======= DEPARTMENT SECTION =========-->
+    
+    <!--======= Contact Info =========-->
+    <section class="contact-info">
+      <div class="container"> 
+        
+        <!--Address-->
+        <ul class="row">
+          <li class="col-md-3"> <i class="ion-ios-location-outline"></i>
+            <h5>Address</h5>
+            <p>1800 Abbot Kinney Blvd. Unit D & E
+              Venice, CA 90291</p>
+          </li>
+          
+          <!-- Hot line -->
+          <li class="col-md-3"> <i class="ion-iphone"></i>
+            <h5>Hotline</h5>
+            <p>+00-0122-123-0089</p>
+          </li>
+          
+          <!--Email Contact-->
+          <li class="col-md-3"> <i class="ion-ios-email-outline"></i>
+            <h5>Email contact</h5>
+            <p>medikal@gmail.com</p>
+            <p> contact@medikalclinic.com</p>
+          </li>
+          
+          <!--Website-->
+          <li class="col-md-3"> <i class="ion-earth"></i>
+            <h5>Website</h5>
+            <p>www.medikalclinic.com </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  {% endblock content %}

@@ -1,0 +1,183 @@
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="showhtml">
+<link rel="stylesheet" href="{% static 'datatables.net-dt/css/jquery.dataTables.css'%}">
+<script src="{% static 'datatables.net/js/jquery.dataTables.js'%}"></script>
+
+<script>
+  
+    $("#buttonsdsdd").click(function(event){
+      event.preventDefault();
+      
+    });
+</script>
+<script>
+    $(document).ready( function () {
+      $('#').DataTable();
+  } );
+</script>
+<script src="{% static 'myjsfile/medicineprecribe.js'%}"></script>
+
+<style>
+    #doctorprofile input,#id_gender,#id_department,#id_degree,#id_Experience,#id_address,#id_speciality
+    {
+      border: 0.5px solid black;
+      font-weight: 400;
+    }
+    #doctorprofile .row .btn-primary
+    {
+      border: none;
+      font-weight: normal;
+    }
+    
+</style>
+
+
+<div class="page-content container-fluid">
+
+
+
+        <div class="page-header">
+                <h1 class="page-title">Setting up you're profile</h1>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Progile</a></li>
+                  <li class="breadcrumb-item active">setting</li>
+                  
+                </ol>
+                <div class="page-header-actions">
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="icon wb-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Refresh">
+                    <i class="icon wb-refresh" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Setting">
+                    <i class="icon wb-settings" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+ <div class="row">
+  <div class="col-lg-12">
+  <div class="panel">
+  <div class="panel-heading">
+  <h3 class="panel-title">Change the settings of the profile</h3>
+  </div>
+  <div class="panel-body">
+
+
+      {% if messages %}
+                          
+      {% for message in  messages %}
+      <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+           {{message}}
+        </div>
+     
+      {% endfor %}
+      {% endif %}
+  
+<form id="doctorprofile">
+          
+        {% csrf_token %}
+        <div class="row">
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>First Name:</label>
+            {{user_form.first_name|as_crispy_field}}
+        </div>
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Last Name:</label>
+            {{user_form.last_name|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Email:</label>
+            {{user_form.email|as_crispy_field}}
+        </div>
+
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Gender:</label>
+            {{profile_form.gender|as_crispy_field}}
+        </div>
+
+
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+          <label>Address:</label>
+          {{profile_form.profile_image|as_crispy_field}}
+      </div>
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Degree:</label>
+            {{profile_form.degree|as_crispy_field}}
+        </div>
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Experience:</label>
+            {{profile_form.Experience|as_crispy_field}}
+        </div>
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Fees:</label>
+            {{profile_form.fees|as_crispy_field}}
+        </div>
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Speciality:</label>
+            {{profile_form.speciality|as_crispy_field}}
+        </div>
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Department:</label>
+            {{profile_form.department|as_crispy_field}}
+        </div>
+        
+        
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+            <label>Address:</label>
+            {{profile_form.address|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-8 col-md-8 col-lg-6">
+        <input type="submit" value="Save Changes" class="btn btn-primary">
+      </div>
+    </div>
+      </form>
+    
+
+  </div>
+  </div>
+  </div>
+ </div>
+</div>
+</div>
+<!-- <script src="{% static 'jquery/dist/jquery.js'%}"></script> -->
+<script type="text/javascript">
+  $(document).on('submit','#doctorprofile',function(e){
+    e.preventDefault();
+  $.ajax({
+        type:'POST',
+        url:'./settings',
+        data:
+        {
+            first_name:$("#id_first_name").val(),
+            last_name:$("#id_last_name").val(),
+            email:$("#id_email").val(),
+            address:$("#id_address").val(),
+            speciality:$("#id_speciality").val(),
+            degree:$("#id_degree").val(),
+            gender:$("#id_gender").val(),
+            Experience:$("#id_Experience").val(),
+            fees:$("#id_fees").val(),
+            department:$("#id_department").val(),
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(res)
+        {
+          $(".showhtml").html(res);
+        }
+    });
+});
+
+</script>
+                     
+{% endblock content %}
+    
